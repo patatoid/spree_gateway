@@ -14,6 +14,7 @@ module SpreeGateway
         app.config.spree.payment_methods << Spree::Gateway::Moneris
         app.config.spree.payment_methods << Spree::Gateway::PayJunction
         app.config.spree.payment_methods << Spree::Gateway::PayPalGateway
+				app.config.spree.payment_methods << Spree::Gateway::PayboxDirectGateway
         app.config.spree.payment_methods << Spree::Gateway::SagePay
         app.config.spree.payment_methods << Spree::Gateway::Beanstream
         app.config.spree.payment_methods << Spree::Gateway::BraintreeGateway
