@@ -36,6 +36,17 @@ module SpreeGateway
         app.config.spree.payment_methods << Spree::Gateway::SpreedlyCoreGateway
     end
 
+		initializer 'spree.gateway.decorator.load' do
+			decorators = paths['app/decorators'].existent
+			if decorators.any?
+				config.to_prepare do
+					Dir.glob(decorators.map{ |d| "#{ d }/**/*_decorator*.rb" }).each do |c|
+						require_dependency(c)
+					end
+				end
+			end
+		end
+
     def self.activate
       if SpreeGateway::Engine.frontend_available?
         Rails.application.config.assets.precompile += [

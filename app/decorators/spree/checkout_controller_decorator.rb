@@ -4,7 +4,7 @@ module Spree
 			 if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
 				 @order.temporary_address = !params[:save_user_address]
 				 unless @order.next
-					 flash[:error] = @order.errors.full_messages.join("\n").force_encoding('UTF-8')
+					 flash[:error] = @order.errors.full_messages.join("\n").force_encoding('windows-1254').encode('utf-8')
 					 redirect_to checkout_state_path(@order.state) and return
 				 end
 				 if @order.completed?
